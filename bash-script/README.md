@@ -135,6 +135,10 @@ read TOKILL
 kill $(ps aux | grep $TOKILL | grep -v grep | awk '{ print $2 }')
 ```
 
+![Special Chars Bash](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/special-chars-bash.png)
+
+![Special Chars Bash2](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/special-chars-bash2.png)
+
 O `read` espera uma entrada do usuário e após digitar o valor e pressionar Enter ele guarda o valor na variável e continua.
 
 * read da um stop no programa
@@ -275,4 +279,130 @@ for i in $FILENAMES
 do
   cp $i $HOME
 done
+```
+
+## Lesson 3
+
+### Substitution Operators
+
+* Conhecido como *String Operator* permite você manipular valores das variáveis de uma maneira fácil.
+  * Assegura que a variável existe.
+  * Coloca valores padrões para as variáveis.
+  * Pega(Catch) erros de variáveis que não existem.
+  * Remove porções de valores das variáveis.
+
+Exemplos:
+
+* **${VAR:-word}**: se o VAR existir, use o seu valor, se não, retorne o valor "word". Isso não coloca o valor padrão.
+* **${VAR:=word}**: se o VAR existir, use o seu valor, se não, coloca o valor padrão.
+* **${VAR:?message}**: se o VAR existir, mostre o seu valor, se não, mostre VAR seguido pela message. Se a message for omitida, a mensagem VAR: valor é null ou não ser[a mostrado.
+* **${VAR:offset:length}**: se o VAR existir, mostre o substring do VAR, começando do *offset* e indo até o *length*
+
+```sh
+DATE=
+echo DATE
+echo ${DATE:-today}
+today
+echo DATE
+---
+echo ${DATE:=today}
+today
+echo $DATE
+today
+---
+DATE=
+echo ${DATE:?variable not set}
+-bash: DATE: variable not set
+echo DATE
+---
+DATE=$(date +%d-%m-%y)
+echo the day is ${DATE:0:2}
+the day is 05
+```
+
+### Pattern Matching Operators
+
+* É usado para remover patterns de uma var.
+* É excelente para limpar info de vars que tenham muita info.
+  * Exemplo: var contém a data, mas você só quer o ano.
+
+* **${VAR#pattern}**: Procura o pattern do início do valor da var e deleta a parte mais curta que bate, retorna o resto.
+
+```sh
+FILENAME=/user/bin/blah
+echo ${FILENAME#*/}
+user/bin/blah
+```
+
+* **${VAR##pattern}**: Procura o pattern do início do valor da var e deleta até a parte mais longa onde bate, retorna o resto.
+```sh
+FILENAME=/user/bin/blah
+echo ${FILENAME##*/}
+blah
+```
+
+* **${VAR%pattern}**: Procura o pattern no fim do valor da var e deleta a parte mais curta que bate, retorna o resto.
+
+```sh
+FILENAME=/user/bin/blah
+echo ${FILENAME#/*}
+/user/bin
+```
+
+* **${VAR$$pattern}**: Procura o pattern no fim do valor da var e deleta até a parte mais longa onde bate, retorna o resto.
+```sh
+FILENAME=/user/bin/blah
+echo ${FILENAME%%/*}
+
+```
+
+### Regular Expressions
+
+* São patterns de busca que podem ser usados por alguns utilitários(grep, awk e sed).
+* Regex não são o mesmo que shell wildcards.
+* Quando usar regex use strong quotes '' para o bash não intrepretar elas.
+
+![Regex](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/regex-bash.png)
+
+### Bash Calculating
+
+* Bash oferece diferentes abordagens para calcular em um script.
+* Internal calculation: $((1 + 1))
+* External calculation with **let**:
+```sh
+#!/bin/bash
+# $1 is the first number
+# $2 is the operator
+# $3 is the second number
+
+let x= "$1 $2 $3"
+echo $x
+```
+
+* External calculation with **bc**
+  * Foi desenvolvido como um calculator com a sua própria interface shell.
+  * Pode lidar além de somente inteiros, diferente dos outros.
+  * Uso do bc em um modo não interativo:
+    * echo "scale=9; 10/3" | bc
+  * Ou em uma var:
+    * VAR=$(echo "scale=9; 10/3" | bc)
+
+### Exercício 3
+
+Escreva um script que coloque o resultado do command **date +%d-%m-%y** em um variável. Use Pattern Matching nessa var para mostrar as 3 linhas
+
+the day is 5
+the month is 01
+the year is 15
+
+### Solução
+
+```sh
+#!/bin/bash
+
+DATE=$(date +%d-%m-%y)
+echo the day is ${DATE%%-*}
+MONTH=${DATE$-*}
+echo the month is ${MONTH#*-}
+echo the year is ${DATE##*-}
 ```
