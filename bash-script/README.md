@@ -135,9 +135,9 @@ read TOKILL
 kill $(ps aux | grep $TOKILL | grep -v grep | awk '{ print $2 }')
 ```
 
-![Special Chars Bash](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/special-chars-bash.png)
+![Special Chars Bash](https://github.com/romjunior/bash/blob/master/bash-script/imgs/special-chars-bash.png)
 
-![Special Chars Bash2](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/special-chars-bash2.png)
+![Special Chars Bash2](https://github.com/romjunior/bash/blob/master/bash-script/imgs/special-chars-bash2.png)
 
 O `read` espera uma entrada do usuário e após digitar o valor e pressionar Enter ele guarda o valor na variável e continua.
 
@@ -362,7 +362,7 @@ echo ${FILENAME%%/*}
 * Regex não são o mesmo que shell wildcards.
 * Quando usar regex use strong quotes '' para o bash não intrepretar elas.
 
-![Regex](https://github.com/romjunior/kubernetes/blob/master/bash/bash-script/imgs/regex-bash.png)
+![Regex](https://github.com/romjunior/bash/blob/master/bash-script/imgs/regex-bash.png)
 
 ### Bash Calculating
 
