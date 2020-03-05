@@ -406,3 +406,85 @@ MONTH=${DATE$-*}
 echo the month is ${MONTH#*-}
 echo the year is ${DATE##*-}
 ```
+
+## Lesson 4
+
+### Using grep
+
+* É uma ferramenta flexível para buscar por padrões de texto baseados em regex.
+  * **grep -i**: case insensitive
+    * grep i- what *
+  * **grep -v**: excluir as linhas que batem com o padrão
+    * grep -v what *
+  * **grep -r**: recursivo
+    * grep -r what *
+  * **grep -e(egrep)**: bate mais regex
+    * grep -e 'what' -e 'else' *
+  * **grep -A5**: mostra 5 linhas depois de bater o regex
+  * **grep -B4**: mostra 4 linhas antes de bater o regex
+
+### Using test
+
+* Permite testar muitos itens.
+  * expression: test( ls /etc/hosts )
+  * string: test -z $1
+  * integers: test $1 = 6
+  * file comparisons: test file1 -nt file2
+  * file properties: test -x file1
+
+Dicas:
+  * **test -z $1**: método antigo, usando um bash interno.
+  * **[ -z $1 ]**: equivalente ao teste, usando bash interno.
+  * **[[ -z $1 ]]**: nova versão melhorada, se a [] não funcionar, use essa. Tem || e &&
+
+### Using cut and sort
+
+* **cut**: é usado pra filtrar uma coluna específica ou um campo fora da linha.
+* **sort**: é usado pra sort em uma ordem específica.
+* os dois são vistos juntos.
+
+### Using tail and head
+
+* **tail** é usado para mostrar as últimas linhas do arquivo
+* **head** é usado para mostrar as primeiras linhas do arquivo
+
+Exemplos:
+```sh
+tail -2 /etc/passwd
+head -2 /etc/passwd
+head -5 /etc/passwd | tail -1
+```
+
+### Using sed
+
+* É mais que um processador de texto utilitário, é uma linguagem de programação com muitos recursos.
+
+Exemplos:
+```sh
+sed -n 5p /etc/passwd #mostra a linha 5
+sed -i s/old-text/new-text/g ~/myfile #substitui old-text por new-text global(todas as ocorrências)
+sed -i -e '5d' ~/myfile #deleta linha 5 do arquivo
+```
+
+### Using awk
+
+* Igual **sed**, **awk** é uma linguagem rica.
+* Uso básico: awk '/search pattern/ {Actions}' file
+
+Exemplos:
+```sh
+awk -F:'{ print $4 }' /etc/passwd #Printa a 4 coluna do arquivo
+awk -F:'/pete/ { print $4 }' /etc/passwd #Printa a 4 coluna do arquivo da linha que tem o pete
+awk -F:'/pete/ { print $1, $NF }' /etc/passwd #Printa a 1 coluna e a ultima coluna do arquivo da linha que tem o pete
+awk -F:'$3 > 500' /etc/passwd #Printa somente os que possuem valor maior que 500 na coluna 3
+```
+
+### Using tr
+
+* Transforma strings
+
+Exemplos:
+```sh
+echo hello | tr [a-z][A-Z]
+echo hello | tr [:lower:][:upper:]
+```
