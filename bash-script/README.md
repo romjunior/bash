@@ -6,4 +6,4 @@ Essas anotações foram feitas baseadas no meu aprendizado sobre scripts em bash
 
 ## Conteúdo
 
-* Lição 1: Criando o seu primeiro script
+* [Lição 1: Criando o seu primeiro script](lesson1.md)
