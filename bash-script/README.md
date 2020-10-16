@@ -7,3 +7,4 @@ Essas anotações foram feitas baseadas no meu aprendizado sobre scripts em bash
 ## Conteúdo
 
 * [Lição 1: Criando o seu primeiro script](lesson1.md)
+* [Lição 2: Trabalhando com parâmetros e variáveis](lesson2.md)

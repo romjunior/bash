@@ -35,3 +35,20 @@
 
 **OBS: Se você colocar scripts com mesmo nome em diretórios diferentes eles vai olhar a a ordem dos diretórios no $PATH pra saber qual script vai executar**
 
+## Entendendo os comandos internos e externos
+
+* Comando interno faz parte do shell bash
+    * Não precisa ser carregado do disco, por isso é mais rápido
+    * Utilize **help** para saber a lista
+    * Utilize `type [nomedocomando]` para saber se ele é interno
+* Comando externo é um comando que é carregado de um arquivo executável no disco
+    * São lentos, por que são carregados do disco.
+
+**OBS: se tiver conflito entre comandos internos e externos(Ex: mesmo nome) o comando interno é executado**
+
+## Encontrando ajuda 
+
+* `man bash` tem toda ajuda, mas é muito grande
+* `help [nomedocomando]` pode ser utilizado para mostra informação sobre o comando que você precisa
+* Existe a internet, e também o guia *Advanced Bash-Scripting Guide* no tldp.ord, é grande.
+
