@@ -53,3 +53,33 @@ FILENAME=/usr/bin/bash
 echo ${FILENAME##/*}
 ```
 
+## Entendendo Regular Expressions
+
+* São padrões de busca que podem ser utilizados com algumas utilidades(**grep** e outros processamento de textos, como **awk**, e **sed**)
+* Não são a mesma coisa que os shell wildcards
+* Quando utilizar, coloque "(strong quotes) para o *shell* não interpretar eles
+
+![Exemplo regex](images/regex-bash.png)
+
+**OBS: Será explorado melhor em conjunto com alguns Utilites na Lição 4**
+
+## Calculos
+
+* Bash oferece maneiras diferentes de calcular no script
+* Calculo interno $((1 + 1))
+* Calculo externo com `let`:
+```bash
+#!/bin/bash
+# $1 é o primeiro número
+# $2 é o operador
+# $3 é o segundo número
+let x="$1 $2 $3"
+echo $x
+```
+[Exemplo](scripts/lesson3/lets.sh)
+
+* Calculo externo com `bc`
+    * As opções acima só lidam com inteiros, e esse comando é feito para lidar com mais que isso.
+    * Possui a sua propria interface
+    * Use o `bc` de uma maneira não interativa: `echo "scale=9; 10/3"|bc`
+    * Ou em uma variável: `VAR=$(echo "scale=9; 10/3"|bc)`
