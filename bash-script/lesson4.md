@@ -90,3 +90,10 @@ awk -F : '$NF ~/bash/' caminho/arquivo #mostra a linha se na ultima linha($NF) e
 ```
 
 ## Usando tr
+
+Usado para transformar strings
+
+```bash
+echo hello | tr [a-z][A-Z] #Transforma lower em upper case
+echo hello | tr [:lower:][:upper:] # Transforma lower em upper case
+```
