@@ -67,3 +67,31 @@ Exemplo(Iterando 10 números):
 ```bash
 for i in {200..210}; do echo $i; done
 ```
+
+## Usando case
+
+* Usado quando você espera por valores específicos nas condições
+Exemplo:
+```bash
+case $VAR in
+    yes) #especifica o case assim
+    echo ok;; #termina aquela condição
+    no|nee)
+    echo too bad;;
+    *) #default case
+    echo try again;;
+esac
+```
+
+## Usando while e until
+
+* `while` usado para executar comandos desde de que a condição seja `true`
+* `until` usado para executar comandos desde de que a condição seja `false`
+
+Sintaxe:
+```bash
+while|until condition
+do
+    command
+done
+```
