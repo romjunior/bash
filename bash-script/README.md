@@ -11,3 +11,4 @@ Essas anotações foram feitas baseadas no meu aprendizado sobre scripts em bash
 * [Lição 3: Transformando Inputs](lesson3.md)
 * [Lição 4: Utilizando ferramentas externas essenciais](lesson4.md)
 * [Lição 5: Usando Condicionais](lesson5.md)
+* [Lição 6: Usando opções avançadas de script](lesson6.md)
