@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function erroneous
+{
+    echo the error is $error
+}
+
+trap DEBUG
+
+echo this line is OK
+erroneous
+
+trap - DEBUG
+
+echo this line is also good
